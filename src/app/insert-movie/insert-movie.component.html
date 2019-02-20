@@ -1,0 +1,33 @@
+<div class="container">
+  <form #movieForm="ngForm" (ngSubmit)="onInsertMovie(movieForm.value)">
+
+    <div class="form-group">
+      <input type="text" class="form-control" name="name" placeholder="Name" required #name="ngModel" ngModel [class.is-invalid]="name.invalid && name.touched">
+      <small [class.d-none]="name.valid || name.untouched" class="text-danger">Name is required</small>
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" name="actor" placeholder="Actor" required #actor="ngModel" ngModel [class.is-invalid]="actor.invalid && actor.touched">
+      <small [class.d-none]="actor.valid || actor.untouched" class="text-danger">Actor is required</small>
+
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" name="director" placeholder="Director" required #director="ngModel" ngModel [class.is-invalid]="director.invalid && director.touched">
+      <small [class.d-none]="director.valid || director.untouched" class="text-danger">Director is required</small>
+    </div>
+    <div class="form-group">
+      <label>Review</label>
+      <select class="custom-select" name="review" #review="ngModel" ngModel [class.is-invalid]="reviewHasError && review.touched" (change)="validateReview(review.value)" (blur)="validateReview(review.value)">
+        <option value="default">select review</option>
+        <option *ngFor="let review of reviews">{{review}}</option>
+      </select>
+      <small [class.d-none]="!reviewHasError || review.untouched" class="text-danger">Selection is required</small>
+        </div>
+
+
+    <button type="submit" class="btn btn-success" [disabled]="movieForm.invalid">Insert Movie</button>
+  </form>
+
+</div>
+<!--{{movieForm.value|json}} to bind the data and see if its fetching the inserting value -->
+<!--{{movieForm.value.actor}}-->
+{{errMsg}}

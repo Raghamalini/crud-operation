@@ -1,0 +1,55 @@
+<div class="container">
+  {{movieForm.value|json}}
+  <form #movieForm="ngForm" (ngSubmit)="onInsertMovie(movieForm.value)">
+
+    <div class="form-group">
+      <input type="text" class="form-control" name="name" placeholder="Name" ngModel>
+      <input type="text" class="form-control" name="actor" placeholder="Actor" ngModel>
+      <input type="text" class="form-control" name="director" placeholder="Director" ngModel>
+
+    </div>
+
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" name="promotion" ngModel>
+      <label class="form-check-label">PROMOOTION OFTEN</label>
+    </div>
+    <div>
+      <label>Batch</label>
+      <div class="form-check">
+
+        <input class="form-check-input" type="radio" name="batch" value="morning" ngModel>
+        <label class="form-check-label">Morning</label>
+      </div>
+
+      <div class="form-check">
+
+        <input class="form-check-input" type="radio" name="batch" value="afternoon" ngModel>
+        <label class="form-check-label">Afternoon</label>
+      </div>
+      <div class="form-check">
+
+        <input class="form-check-input" type="radio" name="batch" value="night" ngModel>
+        <label class="form-check-label">Night</label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Review</label>
+      <select class="custom-select" name="review" ngModel>
+        <option value="">select review</option>
+        <option *ngFor="let review of reviews">{{review}}</option>
+        <!-- <option>Amazing</option>
+        <option>good</option>
+        <option>not bad</option>
+        <option>bad</option>
+        <option>worst</option> -->
+      </select>
+    </div>
+
+
+    <button type="submit" class="btn btn-success">Insert Movie</button>
+  </form>
+
+</div>
+<!--{{movieForm.value|json}} to bind the data and see if its fetching the inserting value -->
+<!--{{movieForm.value.actor}}-->
+{{errMsg}}

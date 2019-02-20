@@ -1,0 +1,29 @@
+<div *ngIf="!updateFlag">
+  <div *ngFor="let movie of movies">
+    {{movie.name}}
+    {{movie.actor}}
+    {{movie.director}}
+    <button class="btn btn-primary" (click)="updateMovie(movie)">Update Movie</button>
+    <button class="btn btn-danger" (click)="deleteMovie(movie)">Delete Movie</button>
+  
+  </div>
+</div>
+
+<div *ngIf="updateFlag">
+  <div class="container">
+    <form #movieForm="ngForm" (ngSubmit)="onUpdateForm()">
+      
+      <div class="form-group">
+        <input type="text" class="form-control" name="name" placeholder="Name" [(ngModel)]="movie.name">
+        <input type="text" class="form-control" name="actor" placeholder="Actor" [(ngModel)]="movie.actor">
+        <input type="text" class="form-control" name="director" placeholder="Director" [(ngModel)]="movie.director">
+      </div>
+      <button type="submit" class="btn btn-success">Update Movie</button>
+    </form>
+    
+    </div>
+</div>
+
+  
+  
+{{errMsg}}
